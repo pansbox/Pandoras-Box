@@ -103,14 +103,16 @@ def Search_Pandoras_Films():
     for file_Name in filenames:
         search_URL = Base_Pand + file_Name + CAT
         HTML = OPEN_URL(search_URL)
-        match=re.compile('<a href="(.+?)" target="_blank"><img src="(.+?)" style="max-width:200px;" /><description = "(.+?)" /><background = "(.+?)" </background></a><br><b>(.+?)</b>').findall(HTML)
-        for url,iconimage,desc,fanart,name in match:
-            if Search_Name in name.lower():
-                addDirPand(name,url,401,iconimage,fanart,desc)
+        if HTML != 'Failed':
+            match=re.compile('<a href="(.+?)" target="_blank"><img src="(.+?)" style="max-width:200px;" /><description = "(.+?)" /><background = "(.+?)" </background></a><br><b>(.+?)</b>').findall(HTML)
+            for url,iconimage,desc,fanart,name in match:
+                if Search_Name in name.lower():
+                    addDirPand(name,url,401,iconimage,fanart,desc)
 				
-                xbmcplugin.setContent(addon_handle, 'movies')
-                xbmcplugin.addSortMethod(addon_handle, xbmcplugin.SORT_METHOD_TITLE);	
-				
+                    xbmcplugin.setContent(addon_handle, 'movies')
+                    xbmcplugin.addSortMethod(addon_handle, xbmcplugin.SORT_METHOD_TITLE);	
+        else:
+		    pass
 				
 def Search_Pandoras_TV():
     
@@ -121,14 +123,16 @@ def Search_Pandoras_TV():
     for file_Name in filenames:
         search_URL2 = Base_Pand + file_Name + CAT
         HTML = OPEN_URL(search_URL2)
-        match = re.compile('<item>.+?<title>(.+?)</title>.+?<description>(.+?)</description>.+?<link>(.+?)</link>.+?<thumbnail>(.+?)</thumbnail>.+?<fanart>(.+?)</fanart>.+?<mode>(.+?)</mode>.+?</item>',re.DOTALL).findall(HTML)
-        for name,desc,url,img,fanart,mode in match:
-            if Search_Name in name.lower():
-                addDirPand2(name,url,mode,img,fanart,desc)
+        if HTML != 'Failed':
+            match = re.compile('<item>.+?<title>(.+?)</title>.+?<description>(.+?)</description>.+?<link>(.+?)</link>.+?<thumbnail>(.+?)</thumbnail>.+?<fanart>(.+?)</fanart>.+?<mode>(.+?)</mode>.+?</item>',re.DOTALL).findall(HTML)
+            for name,desc,url,img,fanart,mode in match:
+                if Search_Name in name.lower():
+                    addDirPand2(name,url,mode,img,fanart,desc)
 				
-                xbmcplugin.setContent(addon_handle, 'movies')
-                xbmcplugin.addSortMethod(addon_handle, xbmcplugin.SORT_METHOD_TITLE);	
-
+                    xbmcplugin.setContent(addon_handle, 'movies')
+                    xbmcplugin.addSortMethod(addon_handle, xbmcplugin.SORT_METHOD_TITLE);	
+        else:
+            pass
 			
 def open_Menu(url):
 
@@ -264,15 +268,20 @@ def Resolve(url):
 
 def OPEN_URL(url):
         req = urllib2.Request(url)
-        IE_USER_AGENT = 'Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; AS; rv:11.0) like Gecko'
-        FF_USER_AGENT = 'Mozilla/5.0 (Windows NT 6.3; rv:36.0) Gecko/20100101 Firefox/36.0'
-        IOS_USER_AGENT = 'Mozilla/5.0 (iPhone; CPU iPhone OS 6_0 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Version/6.0 Mobile/10A5376e Safari/8536.25'
-        ANDROID_USER_AGENT = 'Mozilla/5.0 (Linux; Android 4.4.2; Nexus 4 Build/KOT49H) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1847.114 Mobile Safari/537.36'
         req.add_header('User-Agent', 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.9.0.3) Gecko/2008092417 Firefox/3.0.3')
-        response = urllib2.urlopen(req)
-        link=response.read()
-        response.close()
-        return link
+        response = ''
+        link = ''
+        try: 
+            response = urllib2.urlopen(req)
+            link=response.read()
+            response.close()
+        except: pass
+        if link != '':
+            return link
+        else:
+            link = 'Failed'
+            return link
+
 
 def setView(content, viewType):
 	if content:
