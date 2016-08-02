@@ -56,15 +56,15 @@ FANART      =  xbmc.translatePath(os.path.join(ADDONS,addon_id,'fanart.jpg'))
 
 def Home_Menu():
     
-    addDirPand2('[COLOR darkgoldenrod]Open Pandora\'s Box[/COLOR]','',400,'https://encrypted-tbn1.gstatic.com/images?q=tbn%3AANd9GcTQ9r4TA8yIw9ggxuwsHxWojo6tPVfgTe8QIOxOQwzNR2TavtCi6Q',ART + 'fanart.jpg','','')
+    addDirPand2('[COLOR darkgoldenrod]Open Pandora\'s Box[/COLOR]','',400,'https://s32.postimg.org/ov9s6ipf9/icon.png',ART + 'fanart.jpg','','')
     addDirPand2('[COLOR darkgoldenrod]Search[/COLOR]','',1,'http://icons.iconarchive.com/icons/icontexto/search/256/search-red-dark-icon.png',ART + 'fanart.jpg','','')
-    addDirPand2('[COLOR darkgoldenrod]Favourites[/COLOR]','',12,'http://icons.iconarchive.com/icons/icontexto/search/256/search-red-dark-icon.png',ART + 'fanart.jpg','','')
+    addDirPand2('[COLOR darkgoldenrod]Favourites[/COLOR]','',12,'http://icons.iconarchive.com/icons/colorflow/colorflow_1/256/32-Favorites-icon.png',ART + 'fanart.jpg','','')
 
     xbmcplugin.setContent(addon_handle, 'movies')
 		
 def Search_Menu():
-	addDirPand2('[COLOR darkgoldenrod]Search Pandoras Films[/COLOR]','',424,ART + 'icon.png',ART + 'fanart.jpg','','')
-	addDirPand2('[COLOR darkgoldenrod]Search Pandoras TV[/COLOR]','',425,ART + 'icon.png',ART + 'fanart.jpg','','')
+	addDirPand2('[COLOR darkgoldenrod]Search Pandoras Films[/COLOR]','',424,'http://icons.iconarchive.com/icons/icontexto/search/256/search-red-dark-icon.png',ART + 'fanart.jpg','','')
+	addDirPand2('[COLOR darkgoldenrod]Search Pandoras TV[/COLOR]','',425,'http://icons.iconarchive.com/icons/icontexto/search/256/search-red-dark-icon.png',ART + 'fanart.jpg','','')
 
         xbmcplugin.setContent(addon_handle, 'movies')
 
@@ -88,7 +88,7 @@ def Pandora_Menu(url):
             Watched = re.compile('url="(.+?)"\n').findall(str(watched_read))
             for item in Watched:
                 if item == url:
-                    name = '[COLORred]Watched - [/COLOR]'+name
+                    name =('[COLORblue]Watched - [/COLOR]'+name).replace('[COLORblue]Watched - [/COLOR][COLORblue]Watched - [/COLOR]','[COLORred]Watched - [/COLOR]')
             addDirPand(name,url,401,iconimage,background,desc,'')
             xbmcplugin.setContent(addon_handle, 'movies')			
             xbmcplugin.addSortMethod(addon_handle, xbmcplugin.SORT_METHOD_TITLE);	
@@ -97,7 +97,7 @@ def Search_Pandoras_Films():
     
     Search_Name = Dialog.input('Search', type=xbmcgui.INPUT_ALPHANUM) # what you type in
     Search_Title = Search_Name.lower()
-    filenames = ['hey','480p','720p','1080p','mova', 'movb', 'movc', 'movd', 'move', 'movf', 'movg', 'movh', 'movi', 'movj', 'movk', 'movl', 'movm', 'movn', 'movo', 'movp', 'movq', 'movr', 'movs', 'movt', 'movu', 'movv', 'movw', 'movx', 'movy', 'movz','720paction.php','720padventure.php','720panimation.php','720pcomedy.php','720pcrime.php','720pdocumentary.php','720pdrama.php','720pfamily.php','720pfantasy.php','720phorror.php','720pmystery.php','720promance.php','720psci-Fi.php','720psport.php','720pthriller.php','720pwestern.php','1080paction.php','1080padventure.php','1080panimation.php','1080pcomedy.php','1080pcrime.php','1080pdocumentary.php','1080pdrama.php','1080pfamily.php','1080pfantasy.php','1080phorror.php','1080pmystery.php','1080promance.php','1080psci-Fi.php','1080psport.php','1080pthriller.php','1080pwestern.php']
+    filenames = ['hey','480p','720p','1080p','mova', 'movb', 'movc', 'movd', 'move', 'movf', 'movg', 'movh', 'movi', 'movj', 'movk', 'movl', 'movm', 'movn', 'movo', 'movp', 'movq', 'movr', 'movs', 'movt', 'movu', 'movv', 'movw', 'movx', 'movy', 'movz','720paction','720padventure','720panimation','720pcomedy','720pcrime','720pdocumentary','720pdrama','720pfamily','720pfantasy','720phorror','720pmystery','720promance','720psci-Fi','720psport','720pthriller','720pwestern','1080paction','1080padventure','1080panimation','1080pcomedy','1080pcrime','1080pdocumentary','1080pdrama','1080pfamily','1080pfantasy','1080phorror','1080pmystery','1080promance','1080psci-Fi','1080psport','1080pthriller','1080pwestern','top10animation','top10biography','top10comedy','top10crime','top10documentary','top10drama','top10family','top10fantasy','top10horror','top10mystery','top10romance','top10sci-fi','top10sport','top10thriller','top10western']
     for file_Name in filenames:
         search_URL = Base_Pand + file_Name + CAT
         HTML = OPEN_URL(search_URL)
@@ -108,7 +108,7 @@ def Search_Pandoras_Films():
                     Watched = re.compile('url="(.+?)"\n').findall(str(watched_read))
                     for item in Watched:
                         if item == url:
-                            name = '[COLORred]Watched - [/COLOR]'+name
+                            name = '[COLORblue]Watched - [/COLOR]'+name
                     addDirPand(name,url,401,iconimage,fanart,desc,'')
 					
                     xbmcplugin.setContent(addon_handle, 'movies')
@@ -131,7 +131,7 @@ def Search_Pandoras_TV():
                     Watched = re.compile('url="(.+?)"\n').findall(str(watched_read))
                     for item in Watched:
                         if item == url:
-                            name = '[COLORred]Watched - [/COLOR]'+name
+                            name =('[COLORblue]Watched - [/COLOR]'+name).replace('[COLORblue]Watched - [/COLOR][COLORblue]Watched - [/COLOR]','[COLORred]Watched - [/COLOR]')
                     
                     addDirPand2(name,url,mode,img,fanart,desc,'')
 					
@@ -147,7 +147,7 @@ def open_Menu(url):
         Watched = re.compile('url="(.+?)"\n').findall(str(watched_read))
         for item in Watched:
             if item == url:
-                name = '[COLORred]Watched - [/COLOR]'+name
+                name =('[COLORblue]Watched - [/COLOR]'+name).replace('[COLORblue]Watched - [/COLOR][COLORblue]Watched - [/COLOR]','[COLORred]Watched - [/COLOR]')
         addDirPand2(name,url,mode,img,fanart,desc,'')
 
         xbmcplugin.setContent(addon_handle, 'movies')
@@ -169,7 +169,7 @@ def Read_Favourite():
             addDirPand(name,url,mode,image,fanart,description,name,'')
             setView('Movies', 'INFO')
     if len(Fav_Regex)<=0:
-        addDirPand2('[COLORred]You need to add favourites first[/COLOR]','','','','','','')			
+        addDirPand2('[COLORblue]You need to add favourites first[/COLOR]','','','','','','')			
 			
 def addDirPand(name,url,mode,iconimage,fanart,description,extra,showcontext=True,allinfo={}):
         fav_mode = mode
@@ -312,7 +312,7 @@ def Resolve(url):
     play=xbmc.Player(GetPlayerCore())
     url=urlresolver.HostedMediaFile(url).resolve() 
     if dp.iscanceled(): 
-        print "[COLORred]STREAM CANCELLED[/COLOR]" # need to get this part working    
+        print "[COLORblue]STREAM CANCELLED[/COLOR]" # need to get this part working    
         dialog = xbmcgui.Dialog()
         if dialog.yesno("[B]CANCELLED[/B]", '[B]Was There A Problem[/B]','', "",'Yes','No'):
             dialog.ok("Message Send", "Your Message Has Been Sent")
