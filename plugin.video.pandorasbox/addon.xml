@@ -9,8 +9,8 @@
 		<provides>video</provides>
   </extension>
   <extension point="xbmc.addon.metadata">
-	<summary lang="en">Pandoras Box</summary>
-	<description lang="en">An addon by Origin</description>
+	<summary lang="en">An add-on by Origin</summary>
+	<description lang="en">An addon For All</description>
 	<disclaimer lang="en">The author neither hosts or stores any content, the author has no affiliation with content hosts</disclaimer>
 	<platform>all</platform>
   </extension>

@@ -10,14 +10,14 @@
 		<provides>video</provides>
   </extension>
   <extension point="xbmc.addon.metadata">
-	<summary lang="en">Pandoras Box</summary>
-	<description lang="en">An addon by Origin</description>
+	<summary lang="en">An add-on by Origin</summary>
+	<description lang="en">An addon For All</description>
 	<disclaimer lang="en">The author neither hosts or stores any content, the author has no affiliation with content hosts</disclaimer>
 	<platform>all</platform>
   </extension>
 </addon>
 
-    <addon id="repository.pandoras" name="Pandoras Repo" version="1.0.6" provider-name="Origin">
+    <addon id="repository.pandoras" name="Pandoras Repo" version="1.0.1" provider-name="Pans Box">
         <requires>
             <import addon="xbmc.addon" version="12.0.0"/>
         </requires>
@@ -28,7 +28,7 @@
             <hashes>false</hashes>
         </extension>
         <extension point="xbmc.addon.metadata">
-            <summary>An Add-on by Origin</summary>
+            <summary>Pandoras Amazing box</summary>
             <description>Pandoras Repo</description>
             <platform>all</platform>
     </extension>
