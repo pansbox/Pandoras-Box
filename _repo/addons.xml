@@ -15,7 +15,7 @@
   </extension>
 </addon>
 
-<addon id="plugin.video.pandorasbox" name="Pandoras Box" version="1.1.7" provider-name="Origin">
+<addon id="plugin.video.pandorasbox" name="Pandoras Box" version="1.1.8" provider-name="Origin">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
 	<import addon="script.module.urlresolver"  version="3.0.0"/>
@@ -32,7 +32,7 @@
   </extension>
 </addon>
 
-    <addon id="repository.pandoras" name="Pandoras Repo" version="1.0.1" provider-name="Pans Box">
+    <addon id="repository.pandoras" name="Pandoras Repo" version="1.0.9" provider-name="Pans Box">
         <requires>
             <import addon="xbmc.addon" version="12.0.0"/>
         </requires>
